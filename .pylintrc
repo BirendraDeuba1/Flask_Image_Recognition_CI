@@ -4,6 +4,8 @@
 [MAIN]
 # Do not lint the virtual environment or IDE folders.
 ignore=.venv,venv,.idea
+# Make app.py and model.py importable when pre-commit lints files one at a time.
+init-hook="import sys; sys.path.insert(0, '.'); sys.path.insert(0, 'tests')"
 # Fail the run (non-zero exit) if the score drops below this value.
 fail-under=9.0
 # TensorFlow/Keras are large C-extension packages; let pylint inspect them.
