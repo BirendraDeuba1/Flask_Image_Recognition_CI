@@ -1,0 +1,27 @@
+# Pylint configuration for the Flask hand-sign digit recognizer.
+# Run with:  pylint app.py model.py tests
+
+[MAIN]
+# Do not lint the virtual environment or IDE folders.
+ignore=.venv,venv,.idea
+# Fail the run (non-zero exit) if the score drops below this value.
+fail-under=9.0
+# TensorFlow/Keras are large C-extension packages; let pylint inspect them.
+extension-pkg-allow-list=tensorflow,numpy
+
+[FORMAT]
+# PEP 8 suggests 79; 100 is a common team compromise for readable Flask code.
+max-line-length=100
+
+[MESSAGES CONTROL]
+# Disabled checks, each with a reason:
+#   too-few-public-methods: not relevant for a small Flask app.
+disable=too-few-public-methods
+
+[DESIGN]
+max-args=5
+
+[REPORTS]
+output-format=colorized
+reports=no
+score=yes
