@@ -1,0 +1,21 @@
+# Checks that run automatically on `git commit`.
+# Install once per clone with:  pre-commit install
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace      # remove spaces at line ends
+      - id: end-of-file-fixer        # every file ends with one newline
+      - id: check-yaml               # catches broken workflow/config YAML
+      - id: check-added-large-files  # block accidental large files (model already tracked)
+        args: ["--maxkb=1024"]
+      - id: check-merge-conflict     # stop commits containing <<<<<<< markers
+
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system             # use the project's venv so imports resolve
+        types: [python]
+        args: ["--output-format=text"]
