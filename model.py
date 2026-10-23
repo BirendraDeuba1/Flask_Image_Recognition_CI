@@ -24,7 +24,7 @@ def preprocess_img(img_path):
     Raises ``PIL.UnidentifiedImageError`` if the data is not an image.
     """
     with Image.open(img_path) as op_img:
-        img_resize = op_img.resize(IMAGE_SIZE)
+        img_resize = op_img.convert("RGB").resize(IMAGE_SIZE)
     img2arr = np.asarray(img_resize, dtype="float32") / 255.0
     return img2arr.reshape(1, IMAGE_SIZE[0], IMAGE_SIZE[1], 3)
 
